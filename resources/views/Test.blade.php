@@ -138,5 +138,133 @@
             @endforeach
         </tbody>
     </table>
+    <!-- Projects with Tasks Table -->
+    <h2>dev and Their Tasks</h2>
+    <hr>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>dev nom</th>
+                <th>dev prenom</th>
+                <th>Task</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($devs_with as $dw)
+                <tr>
+                    <td>{{ $dw->nomD }}</td>
+                    <td>{{ $dw->prenomD }}</td>
+                    <td>
+                        <table border="1">
+                            <thead>
+                                <tr>
+                                    <th>Duration</th>
+                                    <th>Cost</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($dw->taches as $tache)
+                                    <tr>
+                                        <td>{{ $tache->dureeHeure }}</td>
+                                        <td>{{ $tache->coutHeure }}</td>
+                                        <td>{{ $tache->etat }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+
+    <!-- Tasks and Their Associated Developers Table -->
+    <h2>Taches and Their Associated Developers</h2>
+    <hr>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Duration</th>
+                <th>Cost</th>
+                <th>Status</th>
+                <th>Developer</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($taches_devs as $tache)
+                <tr>
+                    <td>{{ $tache->dureeHeure }}</td>
+                    <td>{{ $tache->coutHeure }}</td>
+                    <td>{{ $tache->etat }}</td>
+                    <td>
+                        <table border="1">
+                            <thead>
+                                <tr>
+                                    <th>Nom</th>
+                                    <th>Prenom</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{ $tache->developpeur->nomD }}</td>
+                                    <td>{{ $tache->developpeur->prenomD }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+
+    <!-- Developers with at least one task -->
+    <h2>Developers with at least one task</h2>
+    <hr>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Last Name</th>
+                <th>First Name</th>
+                <th>CV</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($devs_has as $dev)
+                <tr>
+                    <td>{{ $dev->nomD }}</td>
+                    <td>{{ $dev->prenomD }}</td>
+                    <td>{{ $dev->cv }}</td>
+
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+
+    <!-- Projects with tasks costing more than 100 -->
+    <h2>Projects with tasks costing more than 100</h2>
+    <hr>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Project Name</th>
+                <th>Description</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($projet_whereHas as $projet)
+                <tr>
+                    <td>{{ $projet->nomP }}</td>
+                    <td>{{ $projet->description }}</td>
+                    <td>{{ $projet->created_at }}</td>
+                    <td>{{ $projet->updated_at }}</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
 </body>
 </html>

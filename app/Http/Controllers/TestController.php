@@ -41,6 +41,19 @@ Site web e-commerce pour produits artisanaux%')
 
 
         $devs_with = Developpeur::with("taches")->get();
-        return view("Test", compact("devs", "devs_Sophie", "projets", "taches", "taches_query", "taches_dev", "taches_cout"));
+
+        $devs_projet = Projet::with("taches")->get();
+
+        $taches_devs = Tache::with("developpeur")->get();
+
+        $devs_taches_projet = Developpeur::with("taches.projet")->get();
+
+        $devs_has = Developpeur::has("taches")->get();
+
+        $projet_whereHas = Projet::whereHas("taches", function ($query) {
+            $query->where("coutHeure", ">", 100);
+        })->get();
+
+        return view("Test", compact("devs", "devs_Sophie", "projets", "taches", "taches_query", "taches_dev", "taches_cout", "devs_with", "devs_projet", "taches_devs", "devs_taches_projet", "devs_has", "projet_whereHas"));
     }
 }

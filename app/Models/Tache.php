@@ -8,7 +8,7 @@ class Tache extends Model
 {
     protected $table = "taches";
     protected $primaryKey = "idT";
-    protected $fillable = ["idP", "idDev", "duree", "coutHeure", "etat"];
+    protected $fillable = ["idP", "idD", "duree", "coutHeure", "etat"];
 
     public function projet()
     {
@@ -17,6 +17,6 @@ class Tache extends Model
 
     public function developpeur()
     {
-        return $this->belongsTo(Developpeur::class, "idDev", "idDev");
+        return $this->belongsTo(Developpeur::class, "idD", "idD");
     }
 }
